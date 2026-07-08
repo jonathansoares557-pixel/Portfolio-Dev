@@ -1,0 +1,318 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --font-sans: 'Poppins', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    --bg: #0A0A0D;
+    --surface: #16161C;
+    --surface-alt: #1D1D24;
+    --border: #2A2A33;
+
+    --text-primary: #F5F5F7;
+    --text-secondary: #9CA0AB;
+    --text-muted: #6B7280;
+
+    --accent-pink: #F0356B;
+    --accent-purple: #9B5DE5;
+}
+
+body {
+    position: relative;
+    overflow-x: hidden;
+    background-color: var(--bg);
+    color: var(--text-secondary);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+h1, h2, h3 {
+    color: var(--text-primary);
+}
+
+/* decorative background code-lines, only visible in the gutters
+   since every section has an opaque background matching the page */
+.bg-decoration {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.bg-decoration::before,
+.bg-decoration::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 220px;
+    background-image:
+        linear-gradient(90deg, #F2B705 0 40px, transparent 0),
+        linear-gradient(90deg, #4EA8DE 0 90px, transparent 0),
+        linear-gradient(90deg, #9B5DE5 0 60px, transparent 0),
+        linear-gradient(90deg, #F0356B 0 30px, transparent 0),
+        linear-gradient(90deg, #2ECC71 0 70px, transparent 0);
+    background-repeat: repeat-y;
+    background-size: 100% 220px;
+    background-position:
+        0 40px, 20px 110px, 10px 170px, 0 230px, 30px 300px;
+    opacity: 0.35;
+}
+
+.bg-decoration::before {
+    left: -60px;
+}
+
+.bg-decoration::after {
+    right: -60px;
+}
+
+/* sections need an opaque bg matching the page so the decoration
+   only peeks through in the side gutters */
+section, footer {
+    position: relative;
+    z-index: 1;
+    background-color: var(--bg);
+}
+
+/* 1. Apresentação */
+.apresentacao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 110px;
+}
+
+.foto-wrapper {
+    position: relative;
+    margin-bottom: 28px;
+}
+
+.foto-perfil {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    border: 3px solid var(--accent-pink);
+    object-fit: cover;
+    display: block;
+}
+
+.foto-badge {
+    position: absolute;
+    right: -4px;
+    bottom: -4px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--surface-alt);
+    border: 2px solid var(--bg);
+    color: #2ECC71;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    display: grid;
+    place-items: center;
+}
+
+.mono-line {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+}
+
+.highlight {
+    color: var(--accent-pink);
+    font-weight: 500;
+}
+
+.nome-destaque {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.biografia {
+    max-width: 620px;
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+}
+
+/* tech badges */
+.badges-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 56px;
+}
+
+.badge {
+    color: #ffffff;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: transform 0.2s;
+}
+
+.badge:hover {
+    transform: scale(1.08);
+}
+
+.badge-html { background-color: #E44D26; }
+.badge-css { background-color: #2965F1; }
+.badge-php { background-color: #777BB4; }
+.badge-mysql { background-color: #00758F; }
+
+.scroll-down {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: -8px;
+    color: var(--text-muted);
+    text-decoration: none;
+}
+
+.scroll-down svg + svg {
+    margin-top: -12px;
+}
+
+/* eyebrow + heading */
+.eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.9375rem;
+    margin-bottom: 8px;
+}
+
+.eyebrow-pink { color: var(--accent-pink); }
+.eyebrow-purple { color: var(--accent-purple); }
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+}
+
+/* 2. Projetos */
+.projetos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.projeto-card {
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: left;
+}
+
+.projeto-thumb {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+}
+
+.projeto-info {
+    padding: 20px;
+}
+
+.projeto-info h3 {
+    margin-bottom: 8px;
+    font-size: 1.0625rem;
+}
+
+.projeto-info p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* 3. Serviços */
+.servicos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 32px;
+    text-align: left;
+}
+
+.servico-item svg {
+    margin-bottom: 16px;
+}
+
+.servico-item h3 {
+    margin-bottom: 8px;
+    font-size: 1.0625rem;
+}
+
+.servico-item p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* 4. Contato */
+.contato-sub {
+    max-width: 480px;
+    margin: 0 auto 32px;
+}
+
+.contato-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+.contato-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: 14px 20px;
+    border-radius: 8px;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.contato-item:hover {
+    border-color: var(--accent-purple);
+    transform: translateY(-2px);
+}
+
+.contato-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+}
+
+.arrow-icon {
+    color: var(--accent-purple);
+}
+
+/* Rodapé */
+footer {
+    text-align: center;
+    padding: 30px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    border-top: 1px solid var(--border);
+}
