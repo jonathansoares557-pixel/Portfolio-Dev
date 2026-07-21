@@ -215,11 +215,24 @@ h2 {
 }
 
 .projeto-card {
+    display: block;
     background-color: var(--surface);
     border: 1px solid var(--border);
     border-radius: 10px;
     overflow: hidden;
     text-align: left;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.projeto-card:hover {
+    border-color: var(--accent-purple);
+    transform: translateY(-4px);
+}
+
+.projeto-card:hover h3 {
+    color: var(--accent-pink);
 }
 
 .projeto-thumb {
